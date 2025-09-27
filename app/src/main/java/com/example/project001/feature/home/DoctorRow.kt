@@ -38,7 +38,7 @@ import com.example.project001.R
 import com.example.project001.core.model.doctorModel
 
 @Composable
-fun DoctorCard(item: doctorModel, onClick: () -> Unit){
+fun DoctorCard(item: doctorModel, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .size(width = 190.dp, height = 260.dp)
@@ -46,23 +46,23 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(3.dp),
         colors = CardDefaults.cardColors(containerColor = colorResource(R.color.white)),
-        onClick = {/* TODO */}
-    ){
+        onClick = { /*TODO*/ }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp),
-           horizontalAlignment = Alignment.CenterHorizontally
-        ){
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Box(
                 modifier = Modifier
                     .size(165.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .background(color = colorResource(R.color.lightPurple))
-            ){
+            ) {
                 AsyncImage(
-                    model = item.picture,
-                    null,
+                    model = item.Picture,
+                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
                     contentScale = ContentScale.Fit,
@@ -71,16 +71,16 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = item.name?: "name",
+                text = item.Name ?: " ",
                 color = colorResource(R.color.black),
                 modifier = Modifier,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
-                )
+            )
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = item.special?:" ",
+                text = item.Special ?: " ",
                 color = colorResource(R.color.gray),
                 modifier = Modifier,
                 fontSize = 12.sp,
@@ -88,12 +88,12 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
             )
             Spacer(Modifier.height(4.dp))
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 2.dp),
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Image(
                     painter = painterResource(R.drawable.star),
                     contentDescription = null
@@ -101,7 +101,7 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = item.rating.toString()?:"",
+                    text = item.Rating?.toString() ?: "",
                     color = colorResource(R.color.black),
                     modifier = Modifier,
                     fontSize = 12.sp,
@@ -110,16 +110,17 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
                 Spacer(Modifier.width(70.dp))
 
                 Image(
-                    modifier = Modifier.size(16.dp)
-                    ,painter = painterResource(R.drawable.experience),
+                    modifier = Modifier.size(16.dp),
+                    painter = painterResource(R.drawable.experience),
                     contentDescription = null
                 )
                 Spacer(modifier = Modifier.width(4.dp))
 
-                Text(text = item.experinse.toString()?: "",
-                    color = colorResource(R.color.black),)
+                Text(
+                    text = item.Experinse?.toString() ?: "",
+                    color = colorResource(R.color.black),
+                )
             }
-
         }
     }
 }
@@ -127,7 +128,7 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit){
 @Preview
 @Composable
 fun DoctorRowPreview(){
-    val item = doctorModel( name = "Vipin kumar" , picture =  "picture_url" , special = "Cardiology", rating = 4.5, experinse = 10)
+    val item = doctorModel( Name = "Vipin kumar" , Picture =  "picture_url" , Special = "Cardiology", Rating = 4.5, Experinse = 10)
     DoctorCard(item = item, onClick = {})
 }
 

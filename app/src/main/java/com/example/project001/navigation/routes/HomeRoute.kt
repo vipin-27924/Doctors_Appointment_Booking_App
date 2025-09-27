@@ -18,6 +18,7 @@ fun NavGraphBuilder.homeRoute(
         LaunchedEffect(Unit) {
             if (categories.value.isEmpty()) {
                 vm.loadCategories()
+                vm.loadDoctors()
             }
         }
         MainScreen(viewModel = vm)
