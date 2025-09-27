@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.project001.core.ViewModel.MainViewModel
 import com.example.project001.navigation.routes.Screen
+import com.example.project001.navigation.routes.detailScreen
 import com.example.project001.navigation.routes.homeRoute
 import com.example.project001.navigation.routes.introRoute
 
@@ -23,5 +24,10 @@ fun AppNavGraph(
             }
         )
         homeRoute(vm = vm, onOpenTopDoctors = {/* */})
+
+        detailScreen(
+            nav = nav,
+            onBack = {nav.popBackStack()}
+        )
     }
 }

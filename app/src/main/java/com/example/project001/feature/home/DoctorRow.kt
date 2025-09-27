@@ -117,7 +117,7 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit) {
                 Spacer(modifier = Modifier.width(4.dp))
 
                 Text(
-                    text = item.Experinse?.toString() ?: "",
+                    text = item.Expriense?.toString() ?: "",
                     color = colorResource(R.color.black),
                 )
             }
@@ -128,7 +128,7 @@ fun DoctorCard(item: doctorModel, onClick: () -> Unit) {
 @Preview
 @Composable
 fun DoctorRowPreview(){
-    val item = doctorModel( Name = "Vipin kumar" , Picture =  "picture_url" , Special = "Cardiology", Rating = 4.5, Experinse = 10)
+    val item = doctorModel( Name = "Vipin kumar" , Picture =  "picture_url" , Special = "Cardiology", Rating = 4.5, Expriense = 10)
     DoctorCard(item = item, onClick = {})
 }
 
@@ -141,7 +141,9 @@ fun DoctorRow(
         if (items.isEmpty()){
             CircularProgressIndicator(
                 modifier = Modifier
-                    .align(Alignment.Center)
+                    .align(Alignment.Center),
+                color = colorResource(R.color.lightPurple),
+                strokeWidth = 2.dp
             )
         }
         else{

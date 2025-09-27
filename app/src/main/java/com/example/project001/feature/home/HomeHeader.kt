@@ -32,7 +32,7 @@ fun HomeHeader(){
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "Hi , Mohsen Jamali",
+                text = "Hi , Vipin Kumar",
                 color = Color.Black,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
