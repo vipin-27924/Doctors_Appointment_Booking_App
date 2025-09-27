@@ -18,9 +18,12 @@ import com.example.project001.core.ViewModel.MainViewModel
 fun MainScreen(
     viewModel: MainViewModel = viewModel()
 ) {
+    val doctors by viewModel.doctors.observeAsState(emptyList())
+
     val categories by viewModel.Category.observeAsState(emptyList())
     LaunchedEffect(Unit) {
-
+        viewModel.loadCategories()
+        viewModel.loadDoctors()
     }
     var selectedBottom by remember { mutableStateOf(0) }
     Scaffold(
@@ -33,12 +36,15 @@ fun MainScreen(
         }
     )
     {
-     inner ->
+            inner ->
         LazyColumn(contentPadding = inner){
             item { HomeHeader() }
             item { Banner() }
             item { SectionHeader(title = "Doctor Speciality" , onSeeAll = {/* */} ) }
             item { CategoryRow(items = categories ) }
+            item { SectionHeader(title = "Doctors" , onSeeAll = {/* */} ) }
+            item { DoctorRow(items = doctors, onClick = { /*TODO*/ }) }
+
         }
     }
 }

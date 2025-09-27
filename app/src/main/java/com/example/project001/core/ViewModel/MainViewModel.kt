@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.project001.core.model.CategoryModel
+import com.example.project001.core.model.doctorModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -13,14 +14,18 @@ class MainViewModel: ViewModel() {
     private val db = FirebaseDatabase.getInstance()
     private val _categories = MutableLiveData<List<CategoryModel>>()
     val Category: LiveData<List<CategoryModel>> = _categories
+
+    private val _doctors = MutableLiveData<List<doctorModel>>()
+    val doctors: LiveData<List<doctorModel>> = _doctors
     private var categoryLoaded = false
+    private var doctorsLoaded = false
 
     fun loadCategories(force: Boolean = false) {
         if (categoryLoaded && !force) {
             return
         }
 
-        val ref = db.getReference("categories")
+        val ref = db.getReference("Category")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val items = mutableListOf<CategoryModel>()
@@ -33,6 +38,28 @@ class MainViewModel: ViewModel() {
 
             override fun onCancelled(error: DatabaseError) {
                 categoryLoaded = false
+            }
+        })
+    }
+
+    fun loadDoctors(force: Boolean = false){
+        if (doctorsLoaded && !force){
+            return
+        }
+        val ref = db.getReference("Doctors")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val items = mutableListOf<doctorModel>()
+
+                for (child in snapshot.children) {
+                    child.getValue(doctorModel::class.java)?.let { items.add(it) }
+                }
+                _doctors.value = items
+                doctorsLoaded = true
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                doctorsLoaded = false
             }
         })
     }

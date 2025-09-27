@@ -1,5 +1,6 @@
 package com.example.project001.feature.home
 
+import android.graphics.Picture
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -55,7 +56,7 @@ fun CategoryRow(item: CategoryModel) {
             contentAlignment = Alignment.Center
         ){
             AsyncImage(
-                model = item.picture,
+                model = item.Picture,
                 contentDescription = null,
                 modifier = Modifier.size(30.dp)
             )
@@ -68,10 +69,12 @@ fun CategoryRow(item: CategoryModel) {
             )
     }
 }
+
+
 @Preview
 @Composable
 fun CategoryRowPreview(){
-    val item = CategoryModel(id = 1 , Name = "Category 1" , picture = "picture_url")
+    val item = CategoryModel(id = 1 , Name = "Category 1" , Picture = "picture_url")
     CategoryRow(item = item)
 }
 
